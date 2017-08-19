@@ -30,7 +30,7 @@ module LayoutConfigurator
         if config.save
           format_response(201, config)
         else
-          format_response(500, errors: config.errors.full_messages)
+          format_response(400, errors: config.errors.full_messages)
         end
       end
     end

@@ -70,9 +70,9 @@ describe 'Api' do
       end
 
       context 'with wrong params' do
-        it 'respond with status 500' do
+        it 'respond with status 400' do
           put '/pages/bar', random: 'bar config'
-          expect(last_response.status).to eq 500
+          expect(last_response.status).to eq 400
         end
 
         it 'return a json formatted error' do
@@ -116,5 +116,6 @@ describe 'Api' do
         expect(LayoutConfig.get('foo')).not_to be
       end
     end
+
   end
 end
