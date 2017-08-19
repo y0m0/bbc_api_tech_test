@@ -39,7 +39,14 @@ describe 'Api' do
 
       it 'return the correct json config data' do
         get '/pages/foo'
-        expect(last_response.body).to eq({ 'id' => 'foo', 'value' => 'foo config' }.to_json)
+        expect(last_response.body).to eq({ id: 'foo', value: 'foo config' }.to_json)
+      end
+    end
+
+    context 'when resource is not available' do
+      it 'respond with status 404' do
+        get '/pages/foo'
+        expect(last_response.status).to eq 404
       end
     end
   end

@@ -12,7 +12,12 @@ module LayoutConfigurator
     end
 
     get '/pages/:id' do
-      LayoutConfig.get(params[:id]).to_json
+      config = LayoutConfig.get(params[:id])
+      if config
+        config.to_json
+      else
+        status 404
+      end
     end
 
   end
