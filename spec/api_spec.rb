@@ -51,4 +51,24 @@ describe 'Api' do
     end
   end
 
+  describe 'PUT /pages/:id ' do
+
+    context 'when the resource does not exists' do
+      it 'creates a new resource' do
+        put '/pages/bar', value: 'bar config'
+        expect(LayoutConfig.get('bar')).to be
+      end
+
+      it 'respond with status 200' do
+        put '/pages/bar', value: 'bar config'
+        expect(last_response.status).to eq 200
+      end
+
+      it 'returns the newly created resource' do
+        put '/pages/bar', value: 'bar config'
+        expect(last_response.body).to eq({ id: 'bar', value: 'bar config' }.to_json)
+      end
+    end
+  end
+
 end
