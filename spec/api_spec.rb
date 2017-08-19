@@ -76,8 +76,13 @@ describe 'Api' do
       end
 
       it 'respond with status 200' do
-        put 'pages/foo', text: 'new foo config'
+        put 'pages/foo', value: 'new foo config'
         expect(last_response.status).to eq 200
+      end
+
+      it 'return the updated config' do
+        put 'pages/foo', value: 'new foo config'
+        expect(last_response.body).to eq({ id: 'foo', value: 'new foo config' }.to_json)
       end
     end
 

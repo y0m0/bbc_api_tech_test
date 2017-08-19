@@ -28,6 +28,7 @@ module LayoutConfigurator
       if config
         config.update(value: params[:value])
         status 200
+        config.to_json
       else
         config = LayoutConfig.new(id: params[:id], value: params[:value])
         if config.save
