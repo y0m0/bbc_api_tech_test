@@ -1,7 +1,5 @@
 describe 'Api' do
-
   describe 'GET /pages' do
-
     it 'responds with status 200' do
       get '/pages'
       expect(last_response.status).to eq 200
@@ -26,7 +24,6 @@ describe 'Api' do
   end
 
   describe 'GET /pages/:id' do
-
     context 'when resource is available' do
       before do
         LayoutConfig.create(id: 'foo', value: 'foo config')
@@ -52,7 +49,6 @@ describe 'Api' do
   end
 
   describe 'PUT /pages/:id ' do
-
     context 'when the resource does not exists' do
       it 'creates a new resource' do
         put '/pages/bar', value: 'bar config'
@@ -100,7 +96,6 @@ describe 'Api' do
   end
 
   describe 'DELETE /pages/:id' do
-
     context 'the resource exists' do
       before(:each) do
         LayoutConfig.create(id: 'foo', value: 'foo config')
@@ -117,5 +112,11 @@ describe 'Api' do
       end
     end
 
+    context 'the resource does not exists' do
+      it 'respond with status 404' do
+        delete '/pages/bar'
+        expect(last_response.status).to eq 404
+      end
+    end
   end
 end

@@ -36,8 +36,13 @@ module LayoutConfigurator
     end
 
     delete '/pages/:id' do
-      LayoutConfig.get(params[:id]).destroy
-      status 204
+      config = LayoutConfig.get(params[:id])
+      if config
+        LayoutConfig.get(params[:id]).destroy
+        status 204
+      else
+        format_response(404, 'Not found')
+      end
     end
 
   end
