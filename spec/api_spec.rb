@@ -15,13 +15,24 @@ describe 'Api' do
     end
 
     context 'when there is some config in the db' do
-
       it 'returns a json with all the configs' do
         config = [{ 'id' => 'foo', 'value' => 'foo config' }]
         allow(LayoutConfig).to receive(:all) { config }
+
         get '/pages'
         expect(last_response.body).to eq config.to_json
       end
     end
   end
+
+  describe 'GET /pages/:id' do
+
+    context 'when resource is available' do
+      it 'respond with status 200' do
+        get '/pages/foo'
+        expect(last_response.status).to eq 200
+      end
+    end
+  end
+
 end

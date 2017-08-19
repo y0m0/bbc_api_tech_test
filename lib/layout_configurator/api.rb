@@ -10,5 +10,9 @@ module LayoutConfigurator
       LayoutConfig.all.to_json
     end
 
+    get '/pages/:id' do
+
+    end
+
   end
 end
