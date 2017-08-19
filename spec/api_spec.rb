@@ -102,13 +102,18 @@ describe 'Api' do
   describe 'DELETE /pages/:id' do
 
     context 'the resource exists' do
-      before do
+      before(:each) do
         LayoutConfig.create(id: 'foo', value: 'foo config')
       end
 
       it 'respond with status 204' do
         delete '/pages/foo'
         expect(last_response.status).to eq 204
+      end
+
+      it 'deletes the resource from the db' do
+        delete '/pages/foo'
+        expect(LayoutConfig.get('foo')).not_to be
       end
     end
   end

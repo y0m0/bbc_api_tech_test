@@ -36,6 +36,7 @@ module LayoutConfigurator
     end
 
     delete '/pages/:id' do
+      LayoutConfig.get(params[:id]).destroy
       status 204
     end
 
