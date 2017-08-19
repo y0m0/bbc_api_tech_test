@@ -16,11 +16,11 @@ describe 'Api' do
 
     context 'when there is some config in the db' do
       it 'returns a json with all the configs' do
-        config = [{ 'id' => 'foo', 'value' => 'foo config' }]
-        allow(LayoutConfig).to receive(:all) { config }
+        configs = [{ 'id' => 'foo', 'value' => 'foo config' }]
+        allow(LayoutConfig).to receive(:all) { configs }
 
         get '/pages'
-        expect(last_response.body).to eq config.to_json
+        expect(last_response.body).to eq configs.to_json
       end
     end
   end
@@ -28,9 +28,18 @@ describe 'Api' do
   describe 'GET /pages/:id' do
 
     context 'when resource is available' do
+      before do
+        LayoutConfig.create(id: 'foo', value: 'foo config')
+      end
+
       it 'respond with status 200' do
         get '/pages/foo'
         expect(last_response.status).to eq 200
+      end
+
+      it 'return the correct json config data' do
+        get '/pages/foo'
+        expect(last_response.body).to eq({ 'id' => 'foo', 'value' => 'foo config' }.to_json)
       end
     end
   end
