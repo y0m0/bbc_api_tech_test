@@ -6,6 +6,8 @@ module LayoutConfigurator
   class Api < Sinatra::Base
 
     get '/pages' do
+      content_type :json
+      LayoutConfig.all.to_json
     end
 
   end
