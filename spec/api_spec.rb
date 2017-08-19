@@ -59,9 +59,9 @@ describe 'Api' do
         expect(LayoutConfig.get('bar')).to be
       end
 
-      it 'respond with status 200' do
+      it 'respond with status 201' do
         put '/pages/bar', value: 'bar config'
-        expect(last_response.status).to eq 200
+        expect(last_response.status).to eq 201
       end
 
       it 'returns the newly created resource' do
@@ -69,6 +69,18 @@ describe 'Api' do
         expect(last_response.body).to eq({ id: 'bar', value: 'bar config' }.to_json)
       end
     end
+
+    context 'when the resource alreay exists' do
+      before do
+        LayoutConfig.create(id: 'foo', value: 'foo config')
+      end
+
+      it 'respond with status 200' do
+        put 'pages/foo', text: 'new foo config'
+        expect(last_response.status).to eq 200
+      end
+    end
+
   end
 
 end

@@ -23,9 +23,20 @@ module LayoutConfigurator
 
     put '/pages/:id' do
       content_type :json
-      config = LayoutConfig.new(id: params[:id], value: params[:value])
-      if config.save
-        config.to_json
+
+      config = LayoutConfig.get(params[:id])
+      if config
+        config.update(value: params[:value])
+        status 200
+      else
+        config = LayoutConfig.new(id: params[:id], value: params[:value])
+        if config.save
+          status 201
+          body config.to_json
+        else
+          status 500
+          { errors: config.errors.full_messages }.to_json
+        end
       end
     end
 
