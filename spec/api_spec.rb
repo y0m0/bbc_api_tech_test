@@ -122,14 +122,20 @@ describe 'Api' do
 
   describe 'POST /pages' do
     context 'successfully create a new resource' do
-      it 'respond with status 201' do
+      before(:each) do
         post '/pages', id: 'foo', value: 'foo config'
+      end
+
+      it 'respond with status 201' do
         expect(last_response.status).to eq 201
       end
 
       it 'return the newly created resource' do
-        post '/pages', id: 'foo', value: 'foo config'
         expect(last_response.body).to eq({ id: 'foo', value: 'foo config' }.to_json)
+      end
+
+      it 'adds the url of the new resource to the header' do
+        expect(last_response.header).to include "Location"=>"/pages/foo"
       end
     end
   end
