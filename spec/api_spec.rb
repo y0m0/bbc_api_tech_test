@@ -97,7 +97,19 @@ describe 'Api' do
         expect(last_response.body).to eq({ id: 'foo', value: 'new foo config' }.to_json)
       end
     end
-
   end
 
+  describe 'DELETE /pages/:id' do
+
+    context 'the resource exists' do
+      before do
+        LayoutConfig.create(id: 'foo', value: 'foo config')
+      end
+
+      it 'respond with status 204' do
+        delete '/pages/foo'
+        expect(last_response.status).to eq 204
+      end
+    end
+  end
 end

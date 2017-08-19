@@ -17,11 +17,7 @@ module LayoutConfigurator
 
     get '/pages/:id' do
       config = LayoutConfig.get(params[:id])
-      if config
-        format_response(200, config)
-      else
-        status 404
-      end
+      config ? format_response(200, config) : format_response(404, 'Not found')
     end
 
     put '/pages/:id' do
@@ -37,6 +33,10 @@ module LayoutConfigurator
           format_response(500, errors: config.errors.full_messages)
         end
       end
+    end
+
+    delete '/pages/:id' do
+      status 204
     end
 
   end
