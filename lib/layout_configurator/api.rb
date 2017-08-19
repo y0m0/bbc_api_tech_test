@@ -20,6 +20,10 @@ module LayoutConfigurator
       config ? format_response(200, config) : format_response(404, 'Not found')
     end
 
+    post '/pages/:id' do
+      status 201
+    end
+
     put '/pages/:id' do
       config = LayoutConfig.get(params[:id])
       if config

@@ -119,4 +119,13 @@ describe 'Api' do
       end
     end
   end
+
+  describe 'POST /pages/:id' do
+    context 'successfully create a new resource' do
+      it 'respond with status 201' do
+        post '/pages/foo'
+        expect(last_response.status).to eq 201
+      end
+    end
+  end
 end
