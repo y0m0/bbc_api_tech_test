@@ -120,11 +120,16 @@ describe 'Api' do
     end
   end
 
-  describe 'POST /pages/:id' do
+  describe 'POST /pages' do
     context 'successfully create a new resource' do
       it 'respond with status 201' do
-        post '/pages/foo'
+        post '/pages', id: 'foo', value: 'foo config'
         expect(last_response.status).to eq 201
+      end
+
+      it 'return the newly created resource' do
+        post '/pages', id: 'foo', value: 'foo config'
+        expect(last_response.body).to eq({ id: 'foo', value: 'foo config' }.to_json)
       end
     end
   end
