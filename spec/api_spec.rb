@@ -68,6 +68,18 @@ describe 'Api' do
         put '/pages/bar', value: 'bar config'
         expect(last_response.body).to eq({ id: 'bar', value: 'bar config' }.to_json)
       end
+
+      context 'with wrong params' do
+        it 'respond with status 500' do
+          put '/pages/bar', random: 'bar config'
+          expect(last_response.status).to eq 500
+        end
+
+        it 'return a json formatted error' do
+          put '/pages/bar', random: 'bar config'
+          expect(last_response.body).to eq({ errors: ["Value must not be blank"] }.to_json)
+        end
+      end
     end
 
     context 'when the resource alreay exists' do
