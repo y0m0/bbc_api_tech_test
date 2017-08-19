@@ -10,7 +10,7 @@ SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
 
 RSpec.configure do |config|
-  conf.include Rack::Test::Methods
+  config.include Rack::Test::Methods
 
   ## Database Cleaner
   # this is run one time before running all the tests
