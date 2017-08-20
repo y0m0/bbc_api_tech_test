@@ -1,4 +1,4 @@
-[my solution](#my_soution) | [requirements](#requirements) | [how to use](#how_to_use)
+[my solution](#my-soution) | [requirements](#requirements) | [how to use](#how-to-use)
 ## BBC Tech Test
 
 ### The Task
@@ -58,7 +58,7 @@ PostgreSQL
 Ruby 2.4.0
 ```
 
-To use the Api install both Ruby 2.4.0 and PostgreSQL ([why PostgreSQL](#my_approach)), clone this repo and then:
+To use the Api install both Ruby 2.4.0 and PostgreSQL ([why PostgreSQL](#my-approach)), clone this repo and then:
 ##### install the dependencies
 ```
 gem install bundler
@@ -96,7 +96,7 @@ curl -i -H 'Accept: application/json' http://localhost:9292/pages/
 
 **GET /pages/:id**
 
-*I pre-saved some resources on Heroku, but if you are running this on your local machine you might want to create some entries to play with by using POST or PUT [create resources with PUT](#my_approach)*
+*I pre-saved some resources on Heroku, but if you are running this on your local machine you might want to create some entries to play with by using POST or PUT [create resources with PUT](#my-approach)*
 
 ```
 curl -i -H 'Accept: application/json' http://localhost:9292/pages/finance-123
