@@ -135,8 +135,16 @@ describe 'Api' do
       end
 
       it 'adds the url of the new resource to the header' do
-        expect(last_response.header).to include "Location"=>"/pages/foo"
+        expect(last_response.header).to include 'Location' => '/pages/foo'
       end
     end
+
+    context 'fails to create a new resource' do
+      it 'respond with status 400' do
+        post '/pages', id: 'foo'
+        expect(last_response.status).to eq 400
+      end
+    end
+
   end
 end
