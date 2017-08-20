@@ -112,7 +112,7 @@ describe 'Api' do
       end
     end
 
-    context 'the resource does not exists' do
+    context 'when the resource does not exists' do
       it 'respond with status 404' do
         delete '/pages/bar'
         expect(last_response.status).to eq 404
@@ -143,6 +143,13 @@ describe 'Api' do
       it 'respond with status 400' do
         post '/pages', id: 'foo'
         expect(last_response.status).to eq 400
+      end
+
+      context 'when passed wrong params' do
+        it 'return a json formatted error' do
+          post '/pages', id: '\%6&8', random: 'foo config'
+          expect(last_response.body).to include 'errors'
+        end
       end
     end
 

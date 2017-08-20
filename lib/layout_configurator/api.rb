@@ -20,7 +20,7 @@ module LayoutConfigurator
       config ? format_response(200, config) : format_response(404, 'Not found')
     end
 
-    post '/pages' do
+    post '/pages/?' do
       config = LayoutConfig.new(id: params[:id], value: params[:value])
       if config.save
         headers 'Location' => "/pages/#{config.id}"
