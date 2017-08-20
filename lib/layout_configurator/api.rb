@@ -21,12 +21,16 @@ module LayoutConfigurator
     end
 
     post '/pages/?' do
-      config = LayoutConfig.new(id: params[:id], value: params[:value])
-      if config.save
-        headers 'Location' => "/pages/#{config.id}"
-        format_response(201, config)
+      if LayoutConfig.get(params[:id])
+        format_response(400, 'Resource already exists')
       else
-        format_response(400, errors: config.errors.full_messages)
+        config = LayoutConfig.new(id: params[:id], value: params[:value])
+        if config.save
+          headers 'Location' => "/pages/#{config.id}"
+          format_response(201, config)
+        else
+          format_response(400, errors: config.errors.full_messages)
+        end
       end
     end
 
