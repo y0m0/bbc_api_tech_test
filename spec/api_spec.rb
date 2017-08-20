@@ -73,7 +73,7 @@ describe 'Api' do
 
         it 'return a json formatted error' do
           put '/pages/bar', random: 'bar config'
-          expect(last_response.body).to eq({ errors: ["Value must not be blank"] }.to_json)
+          expect(last_response.body).to eq({ errors: ['Value must not be blank'] }.to_json)
         end
       end
     end

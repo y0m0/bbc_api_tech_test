@@ -1,5 +1,4 @@
 class LayoutConfig
-
   include DataMapper::Resource
 
   property :id, String, key: true
@@ -17,6 +16,4 @@ class LayoutConfig
     return true if /^[a-z-]+(-\d+)?$/.match?(@id)
     [false, 'Invalid Id format']
   end
-
-
 end

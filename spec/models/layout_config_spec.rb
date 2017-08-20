@@ -1,7 +1,6 @@
 require_relative '../../lib/layout_configurator/models/layout_config'
 
 describe LayoutConfig do
-
   it 'value cannot be empty' do
     layout = LayoutConfig.new(id: 'test', value: '')
 
@@ -40,5 +39,3 @@ describe LayoutConfig do
     end
   end
 end
-
-
