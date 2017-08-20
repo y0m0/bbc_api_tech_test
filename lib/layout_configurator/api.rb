@@ -43,5 +43,9 @@ module LayoutConfigurator
         format_response('Not Found', 404)
       end
     end
+
+    error Sinatra::NotFound do
+      format_response('Not Found', 404)
+    end
   end
 end
