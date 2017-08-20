@@ -1,4 +1,4 @@
-[my solution](#my-soution) | [requirements](#requirements) | [how to use](#how-to-use)
+[my solution](#my-solution) | [requirements](#requirements) | [how to use](#how-to-use)
 ## BBC Tech Test
 
 ### The Task
@@ -46,7 +46,7 @@ Then the appropriate response with status code should be returned
 
 ## My Solution
 
-#### Getting Started
+### Getting Started
 
 The Api is deployed on Heroku at https://immense-reaches-61750.herokuapp.com/
 
@@ -78,7 +78,7 @@ bundle exec rackup
 bundle exec rspec
 ```
 
-#### How to use
+### How to use
 
 If installed locally the Api is available at http://localhost:929  
 
