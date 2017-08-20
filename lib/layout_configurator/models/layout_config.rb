@@ -5,6 +5,7 @@ class LayoutConfig
   property :id, String, key: true
   property :value, String
 
+  validates_uniqueness_of :id
   validates_presence_of :value
   validates_with_method :id, method: :valid_id?
 
@@ -16,4 +17,6 @@ class LayoutConfig
     return true if /^[a-z-]+(-\d+)?$/.match?(@id)
     [false, 'Invalid Id format']
   end
+
+
 end
