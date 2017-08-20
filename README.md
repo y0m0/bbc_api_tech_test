@@ -149,3 +149,7 @@ While PUT could be used to create new resources I decided to include POST aswell
 In my specific case, PUT might have been enough since I have to manually specify the ID for the resource. However when taking into account scalability, it is reasonable to assume that in the future the IDs will be automatically generated on creation and that will require a POST route to process it.
 
 The last route that I decided to include is DELETE despite not being one the requirements. I feel like it is an essential part of a complete RESTful api. If security is a concern, DELETE could be protected by some sort of authentication to avoid accidental or malicious use. DELETE as stated in the [offical documentation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.7) always responds with a status *204* in case the resource was deleted or the resource was not present in the first place.
+
+#### Notes
+
+Given more time I would have liked to add some sort of authentication.  An example could be requiring a valid api-key to process the request like illustrated [here](https://stackoverflow.com/questions/3479737/sinatra-api-authentication). Another option could be to implement a more complex user based authentication system.
